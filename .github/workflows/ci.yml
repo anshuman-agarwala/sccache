@@ -123,13 +123,15 @@ jobs:
 
       - name: Get artifacts
         uses: actions/download-artifact@v5
+        with:
+          name: "sccache-v0.12.0-ppc64-unknown-linux-musl"
 
       - name: Display structure of downloaded files
         run: ls -R
 
       - name: Create release assets
         run: |
-          for d in sccache*; do
+          for d in sccache-*; do
             chmod +x "$d/sccache"*
             cp README.md LICENSE "$d/"
             tar -zcvf "$d.tar.gz" "$d"
